@@ -1,0 +1,13 @@
+[package]
+name = "rust-calculator"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3           # máxima otimização (custo em tempo de build)
+lto = "thin"            # boa performance com compatibilidade (default do cargo)
+codegen-units = 1       # melhor otimização inter-crate
+panic = "unwind"        # mantém suporte a unwinding cross-platform
+strip = true            # remove símbolos de debug no binário final
