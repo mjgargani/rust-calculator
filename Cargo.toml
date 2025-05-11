@@ -1,13 +1,18 @@
-[package]
-name = "rust-calculator"
-version = "0.1.0"
-edition = "2024"
+# (Aprendizado com utilização do Canvas no ChatGPT (4o)
+# Vamos por partes?
+# Aqui está `Cargo.toml`, como é um projeto de aprendizado que 
+# fazer comentários pertinentes, preciso que você valide esses comentários e sugira fontes oficiais
 
-[dependencies]
+[package]                  # Responsável pelos metadados da aplicação (similar ao cabeçalho do package.json, no nodejs)
+name = "rust-calculator"   # Nome do projeto (nome da pasta?)
+version = "0.1.0"          # Versão semântica
+edition = "2024"           # Não tenho certeza, ainda
+
+[dependencies]             # Pacotes adicionais? (Não lembro se é módulo ou crate)
 
 [profile.release]
-opt-level = 3           # máxima otimização (custo em tempo de build)
-lto = "thin"            # boa performance com compatibilidade (default do cargo)
-codegen-units = 1       # melhor otimização inter-crate
-panic = "unwind"        # mantém suporte a unwinding cross-platform
-strip = true            # remove símbolos de debug no binário final
+opt-level = 3              # máxima otimização (build), são três níveis, cada um com uma finalidade (dev, debug, production - esse caso)
+lto = "thin"               # não lembro ao certo, mas diz respeito à compatibilidade geral com processadores, mas não sei as limitações
+codegen-units = 1          # blocos para compilação, os crates são as separações (como caixas) que o rust compila de forma mais ou menos rápida e otimizada
+panic = "unwind"           # não tenho certeza, mas acho que é o escape de erros padrão?
+strip = true               # remove símbolos de debug no binário final (não sei se remove comentários também)
