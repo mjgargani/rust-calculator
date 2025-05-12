@@ -1,18 +1,22 @@
-# (Aprendizado com utilização do Canvas no ChatGPT (4o)
-# Vamos por partes?
-# Aqui está `Cargo.toml`, como é um projeto de aprendizado que 
-# fazer comentários pertinentes, preciso que você valide esses comentários e sugira fontes oficiais
+# The Cargo Manifest ("Cargo" aqui, carrega a ideia "logistica": triagem, carregamento, transporte, gerenciamento, compilação);
+# "Crates" seriam as caixas, os blocos de código compilável. Crates são separações pré-compilação; Módulos são separações lógicas (Arquitetura).
+# Esse arquivo é no formato TOML - Tom's Obvious Minimal Language, em geral, esse formato (como também no YAML,JSON,XML), fazemos configurações
+# diretas, nesse caso aqui, se tratam de pré-definições para o Cargo.
+# https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]                  # Responsável pelos metadados da aplicação (similar ao cabeçalho do package.json, no nodejs)
-name = "rust-calculator"   # Nome do projeto (nome da pasta?)
-version = "0.1.0"          # Versão semântica
-edition = "2024"           # Não tenho certeza, ainda
+name = "rust-calculator"   # Nome do projeto (estou usando com base no nome da pasta atual, mas o binário gerado, leva esse nome)
+version = "0.1.0"          # Versão semântica (https://semver.org/lang/pt-BR/)
+edition = "2024"           # Edição do Rust: baseado no axioma "estabilidade sem estagnação", funcionalidades estáveis são mantidas pelos contribuidores na posteridade
 
-[dependencies]             # Pacotes adicionais? (Não lembro se é módulo ou crate)
+[dependencies]             # Crates externas ("Pacotes externos", estilo npm): https://crates.io/
 
-[profile.release]
-opt-level = 3              # máxima otimização (build), são três níveis, cada um com uma finalidade (dev, debug, production - esse caso)
-lto = "thin"               # não lembro ao certo, mas diz respeito à compatibilidade geral com processadores, mas não sei as limitações
-codegen-units = 1          # blocos para compilação, os crates são as separações (como caixas) que o rust compila de forma mais ou menos rápida e otimizada
-panic = "unwind"           # não tenho certeza, mas acho que é o escape de erros padrão?
-strip = true               # remove símbolos de debug no binário final (não sei se remove comentários também)
+[profile.release]          # Perfis de compilação, o Rust possui quatro perfis padrão (dev, release, test, bench): https://doc.rust-lang.org/cargo/reference/profiles.html
+opt-level = 3              # máxima otimização (build), são 6 níveis (do menor nível ao maior): 0,1,2,3,"s","z"
+lto = true                 # "Link Time Optimization" (LLVM), conjunto de otimizações que visa "enxutar" o código à medida que remove coisas não utilizadas, ou redundantes
+                           # Segundo a documentação: "true" está para "fat" (padrão) e "thin" é similar a "fat", porém com execução mais rápida
+codegen-units = 1          # Quantidade de blocos de compilação, envolve a capacidade do compilador em paralelizar a geração de código, ao custo de otimização 
+                           # (quanto mais unidades, mais rápida a compilação, porém menor a otimização)
+panic = "unwind"           # tratamento para o sinal de pânico no programa (erro fatal), "unwind" faz a limpeza da utilização de recursos na tentativa de "voltar atrás", 
+                           # "abort", termina o processo, sem necessariamente limpar o uso de recursos
+strip = true               # Remove símbolos de debug no binário final (redução do seu tamanho, por tabela)
