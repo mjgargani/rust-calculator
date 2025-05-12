@@ -1,3 +1,5 @@
+use crate::math; // Importa o módulo 'math' do crate atual
+
 // Enumeração (enum) de nome 'Operation' para definir operações matemáticas
 enum Operation {
     Add,
@@ -13,21 +15,12 @@ fn calculate(op: Operation, numbers: &[f64]) -> f64 {
         // '::' é o operador de acesso para itens estáticos (ex: variantes de enum)
         // 'iter()' retorna um iterador sobre os elementos do slice
         // 'sum()', 'fold()', etc., são métodos de agregação sobre iteradores
-        Operation::Add => numbers.iter().sum(),
-        Operation::Subtract => {
-            if numbers.is_empty() {
-                return f64::NAN;
-            }
-            numbers.iter().skip(1).fold(numbers[0], |acc, x| acc - x)
-        },
-        Operation::Multiply => numbers.iter().fold(1.0, |acc, x| acc * x),
-        Operation::Divide => {
-            if numbers.len() < 2 {
-                return f64::NAN; // Acessa f64::NAN (Not a Number). Rust não possui 'undefined' ou 'null'.
-            }
-            numbers.iter().skip(1).fold(numbers[0], |acc, x| acc / x)
-        }
+        Operation::Add => math::add(numbers),
+        Operation::Subtract => math::sub(numbers),
+        Operation::Multiply => math::mul(numbers),
+        Operation::Divide => math::div(numbers),
     }
+    
 }
 
 fn main() { // Todo programa Rust começa pela função main
