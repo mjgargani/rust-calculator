@@ -1,11 +1,6 @@
-use super::validation::empty_or_nan;
-use super::validation::zero_division;
-// Ou 'use crate::validation::empty_or_nan;' | 'use crate::validation::zero_division;'
+use crate::validation::zero_division; // Importa o módulo 'validation' do crate pai usando 'super::'
 
 pub fn div(values: &[f64]) -> f64 {
-    if let Err(e) = empty_or_nan(values) {
-        panic!("{}", e);
-    }
     if let Err(e) = zero_division(values) {
         panic!("{}", e);
     }

@@ -7,6 +7,7 @@ It uses an `enum` to define basic operations (`Add`, `Subtract`, `Multiply`, `Di
 
 * Basic operations: addition, subtraction, multiplication, division
 * Optimized for performance (`opt-level = 3`, `lto = "thin"`, `codegen-units = 1`, `strip = true`)
+* Validation for edge cases
 
 ## Build and Run
 
@@ -27,6 +28,6 @@ Divide: 0.03
 
 ## Roadmap
 
-* [ ] Modularize operations into `math::{add, sub, mul, div}`
+* [X] Modularize operations into `math::{add, sub, mul, div}`
 * [ ] Add unit tests
 * [ ] Integrate with a GUI (e.g. `egui`, `slint`, or `Flutter + FFI`)

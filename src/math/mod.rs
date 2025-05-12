@@ -1,7 +1,9 @@
-use super::math;
-// Ou 'use crate::enums::math;'
+mod add;
+mod sub;
+mod mul;
+mod div;
 
-pub mod math::add;
-pub mod math::sub;
-pub mod math::mul;
-pub mod math::div;
+pub use add::add;
+pub use sub::sub;
+pub use mul::mul;
+pub use div::div;
